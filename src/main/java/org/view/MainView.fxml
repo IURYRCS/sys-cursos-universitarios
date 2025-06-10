@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<BorderPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.controller.MainController">
+    <top>
+        <MenuBar BorderPane.alignment="CENTER">
+            <menus>
+                <Menu mnemonicParsing="true" text="Cadastros">
+                    <items>
+                        <MenuItem mnemonicParsing="true" text="Cursos" onAction="#showCursoView"/>
+                        <MenuItem mnemonicParsing="true" text="Professores" onAction="#showProfessorView"/>
+                        <MenuItem mnemonicParsing="true" text="Disciplinas" onAction="#showDisciplinaView"/>
+                        <MenuItem mnemonicParsing="true" text="Turmas" onAction="#showTurmaView"/>
+                    </items>
+                </Menu>
+            </menus>
+        </MenuBar>
+    </top>
+    <center>
+        <AnchorPane fx:id="contentPane" BorderPane.alignment="CENTER" />
+    </center>
+</BorderPane>
