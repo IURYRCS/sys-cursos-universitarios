@@ -28,7 +28,7 @@ public class DisciplinaDAO {
     public void delete(Disciplina disciplina) {
         EntityManager em = JPAUtil.getEntityManager();
         em.getTransaction().begin();
-        disciplina = em.merge(disciplina); // Garante que a entidade está no contexto de persistência
+        disciplina = em.merge(disciplina);
         em.remove(disciplina);
         em.getTransaction().commit();
         em.close();

@@ -29,7 +29,7 @@ public class ProfessorDAO {
     public void delete(Professor professor) {
         EntityManager em = JPAUtil.getEntityManager();
         em.getTransaction().begin();
-        professor = em.merge(professor); // Garante que a entidade está no contexto de persistência
+        professor = em.merge(professor);
         em.remove(professor);
         em.getTransaction().commit();
         em.close();
@@ -49,8 +49,6 @@ public class ProfessorDAO {
         em.close();
         return professores;
     }
-
-    // Métodos adicionais para lidar com o relacionamento com Disciplina (exemplo)
 
     public void adicionarDisciplina(Professor professor, Long disciplinaId) {
         EntityManager em = JPAUtil.getEntityManager();

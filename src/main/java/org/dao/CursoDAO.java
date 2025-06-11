@@ -28,7 +28,7 @@ public class CursoDAO {
     public void delete(Curso curso) {
         EntityManager em = JPAUtil.getEntityManager();
         em.getTransaction().begin();
-        curso = em.merge(curso); // Garante que a entidade está no contexto de persistência
+        curso = em.merge(curso);
         em.remove(curso);
         em.getTransaction().commit();
         em.close();

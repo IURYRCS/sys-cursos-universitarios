@@ -2,11 +2,16 @@ package org.controller;
 
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
+import javafx.scene.control.Alert;
 import javafx.scene.layout.AnchorPane;
+import javafx.scene.layout.BorderPane;
 import org.utils.PathFXML;
+import org.utils.Alerta;
 
-import java.io.FileInputStream;
 import java.io.IOException;
+import java.net.URL;
+import java.nio.file.Paths;
 
 public class MainController {
 
@@ -14,32 +19,49 @@ public class MainController {
     private AnchorPane contentPane;
 
     @FXML
+    private BorderPane mainBorderPane;
+
+    @FXML
     public void showCursoView() {
-        loadView (PathFXML.pathFXML()+"CursoView.fxml");
+        loadView("CursoView.fxml");
     }
 
     @FXML
     public void showProfessorView() {
-        loadView("/org/view/professor-view.fxml");
+        loadView("ProfessorView.fxml");
     }
 
     @FXML
     public void showDisciplinaView() {
-        loadView("/org/view/disciplina-view.fxml");
+        loadView("DisciplinaView.fxml");
     }
 
     @FXML
     public void showTurmaView() {
-        loadView("/org/view/turma-view.fxml");
+        loadView("TurmaView.fxml");
     }
 
-    private void loadView(String fxmlPath) {
+    public void loadView(String arquivoFXML) {
         try {
-            FXMLLoader loader = new FXMLLoader();
-            AnchorPane view = loader.load(new FileInputStream(PathFXML.pathFXML()+ fxmlPath));
-            contentPane.getChildren().setAll(view);
+            FXMLLoader fxmlLoader = new FXMLLoader();
+            URL location = Paths.get(PathFXML.pathFXML(), arquivoFXML).toUri().toURL();
+            fxmlLoader.setLocation(location);
+            Parent root = fxmlLoader.load();
+
+            contentPane.getChildren().clear();
+            contentPane.getChildren().add(root);
+
+            AnchorPane.setTopAnchor(root, 0.0);
+            AnchorPane.setBottomAnchor(root, 0.0);
+            AnchorPane.setLeftAnchor(root, 0.0);
+            AnchorPane.setRightAnchor(root, 0.0);
+
         } catch (IOException e) {
-            e.printStackTrace(); // Replace with proper logging
+            Alerta.exibirAlerta("Error", "Erro ao carregar a view", e.getMessage(), Alert.AlertType.ERROR);
+            e.printStackTrace();
+        } catch (RuntimeException e) {
+            Alerta.exibirAlerta("Error", "Erro ao carregar a view", e.getMessage(), Alert.AlertType.ERROR);
+            e.printStackTrace();
         }
     }
 }

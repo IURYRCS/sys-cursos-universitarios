@@ -9,7 +9,7 @@ import java.util.List;
 
 public class TurmaDAO {
 
-    private static final String PERSISTENCE_UNIT_NAME = "seu_persistence_unit_name"; // Replace with your actual persistence unit name
+    private static final String PERSISTENCE_UNIT_NAME = "seu_persistence_unit_name";
     private static EntityManagerFactory factory;
 
     public TurmaDAO() {
@@ -28,7 +28,7 @@ public class TurmaDAO {
             if (em.getTransaction().isActive()) {
                 em.getTransaction().rollback();
             }
-            e.printStackTrace(); // Handle the exception properly (log it, etc.)
+            e.printStackTrace();
         } finally {
             em.close();
         }
@@ -40,7 +40,7 @@ public class TurmaDAO {
         try {
             turma = em.find(Turma.class, id);
         } catch (Exception e) {
-            e.printStackTrace(); // Handle the exception properly
+            e.printStackTrace();
         } finally {
             em.close();
         }
@@ -53,7 +53,7 @@ public class TurmaDAO {
         try {
             turmas = em.createQuery("SELECT t FROM Turma t", Turma.class).getResultList();
         } catch (Exception e) {
-            e.printStackTrace(); // Handle the exception properly
+            e.printStackTrace();
         } finally {
             em.close();
         }
@@ -70,7 +70,7 @@ public class TurmaDAO {
             if (em.getTransaction().isActive()) {
                 em.getTransaction().rollback();
             }
-            e.printStackTrace(); // Handle the exception properly
+            e.printStackTrace();
         } finally {
             em.close();
         }
@@ -89,7 +89,7 @@ public class TurmaDAO {
             if (em.getTransaction().isActive()) {
                 em.getTransaction().rollback();
             }
-            e.printStackTrace(); // Handle the exception properly
+            e.printStackTrace();
         } finally {
             em.close();
         }
@@ -108,7 +108,7 @@ public class TurmaDAO {
             if (em.getTransaction().isActive()) {
                 em.getTransaction().rollback();
             }
-            e.printStackTrace(); // Handle the exception properly
+            e.printStackTrace();
         } finally {
             em.close();
         }

@@ -16,6 +16,7 @@ public class Professor {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
     private String nome;
+    private String eMail;
     private String formacao;
 
     @ManyToMany

@@ -5,34 +5,26 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="e47fdf32-afb7-46fb-84ea-cae1bd224fe3" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/encodings.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/uiDesigner.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.mvn/wrapper/maven-wrapper.jar" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.mvn/wrapper/maven-wrapper.properties" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/mvnw" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/mvnw.cmd" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/module-info.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/org/MainApp.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/org/controller/CursoController.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/org/controller/MainController.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/org/dao/CursoDAO.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/org/dao/DisciplinaDAO.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/org/dao/ProfessorDAO.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/org/dao/TurmaDAO.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/org/model/Curso.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/org/model/Disciplina.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/org/model/Professor.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/org/model/Turma.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/org/utils/JPAUtil.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/org/utils/PathFXML.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/org/view/CursoView.fxml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/org/view/MainView.fxml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/persistence.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/org/controller/DisciplinaController.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/org/controller/ProfessorController.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/org/controller/TurmaController.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/org/utils/Alerta.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/org/view/DisciplinaView.fxml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/org/view/ProfessorView.fxml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/org/view/TurmaView.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/controller/CursoController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/controller/CursoController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/controller/MainController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/controller/MainController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/dao/CursoDAO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/dao/CursoDAO.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/dao/DisciplinaDAO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/dao/DisciplinaDAO.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/dao/ProfessorDAO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/dao/ProfessorDAO.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/dao/TurmaDAO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/dao/TurmaDAO.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/model/Professor.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/model/Professor.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/utils/JPAUtil.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/utils/JPAUtil.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/utils/PathFXML.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/utils/PathFXML.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/view/CursoView.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/view/CursoView.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/view/MainView.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/view/MainView.fxml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -42,8 +34,8 @@
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
-        <option value="FxmlFile" />
         <option value="Class" />
+        <option value="FxmlFile" />
       </list>
     </option>
   </component>
@@ -53,6 +45,9 @@
   <component name="MarkdownSettingsMigration">
     <option name="stateVersion" value="1" />
   </component>
+  <component name="ProjectColorInfo"><![CDATA[{
+  "associatedIndex": 0
+}]]></component>
   <component name="ProjectId" id="2yKjyQ3XwO64532MIOjaAEO0sVi" />
   <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
   <component name="ProjectViewState">
@@ -61,9 +56,13 @@
   </component>
   <component name="PropertiesComponent"><![CDATA[{
   "keyToString": {
+    "Application.MainApp.executor": "Run",
     "RunOnceActivity.OpenProjectViewOnStart": "true",
     "RunOnceActivity.ShowReadmeOnStart": "true",
-    "SHARE_PROJECT_CONFIGURATION_FILES": "true"
+    "SHARE_PROJECT_CONFIGURATION_FILES": "true",
+    "ignore.virus.scanning.warn.message": "true",
+    "kotlin-language-version-configured": "true",
+    "last_opened_file_path": "C:/Users/Iury/Desktop/ENG. SOFTWARE/POO3/sys-cursos-universitarios"
   }
 }]]></component>
   <component name="RecentsManager">
