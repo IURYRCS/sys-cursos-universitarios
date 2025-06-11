@@ -41,8 +41,8 @@
 
             <HBox alignment="CENTER" spacing="10.0" GridPane.columnIndex="1" GridPane.rowIndex="4">
                 <children>
-                    <Button mnemonicParsing="false" onAction="#salvarTurma" prefHeight="25.0" prefWidth="70.0" text="Salvar" />
-                    <Button mnemonicParsing="false" onAction="#cancelarTurma" prefHeight="25.0" prefWidth="70.0" text="Cancelar" />
+                    <Button fx:id="BtnSalvarTurma" mnemonicParsing="false" onAction="#onBtnSalvarTurma" prefHeight="25.0" prefWidth="70.0" text="Salvar" />
+                    <Button fx:id="BtnCancelarTurma" mnemonicParsing="false" onAction="#onBtnCancelarTurma" prefHeight="25.0" prefWidth="70.0" text="Cancelar" />
                 </children>
             </HBox>
         </GridPane>
@@ -50,10 +50,10 @@
             <children>
                 <HBox alignment="CENTER" spacing="10.0">
                     <children>
-                        <Button alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" onAction="#novaTurma" prefHeight="25.0" prefWidth="100.0" text="Novo" />
-                        <Button alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" onAction="#editarTurma" prefHeight="25.0" prefWidth="100.0" text="Editar" />
-                        <Button alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" onAction="#removerTurma" prefHeight="25.0" prefWidth="100.0" text="Remover" />
-                        <Button alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" onAction="#atualizarLista" prefHeight="25.0" prefWidth="100.0" text="Atualizar Lista" />
+                        <Button fx:id="BtnNovaTurma" alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" onAction="#onBtnNovaTurma" prefHeight="25.0" prefWidth="100.0" text="Novo" />
+                        <Button fx:id="BtnEditarTurma" alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" onAction="#onBtnEditarTurma" prefHeight="25.0" prefWidth="100.0" text="Editar" />
+                        <Button fx:id="BtnRemoverTurma" alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" onAction="#onBtnRemoverTurma" prefHeight="25.0" prefWidth="100.0" text="Remover" />
+                        <Button fx:id="BtnAtualizarLista" alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" onAction="#onBtnAtualizarLista" prefHeight="25.0" prefWidth="100.0" text="Atualizar Lista" />
                     </children>
                 </HBox>
 

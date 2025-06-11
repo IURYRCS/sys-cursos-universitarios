@@ -39,11 +39,11 @@
 
             <HBox alignment="CENTER" prefHeight="30.0" prefWidth="122.0" spacing="10.0" GridPane.columnIndex="1" GridPane.rowIndex="3">
                 <children>
-                    <Button alignment="CENTER" mnemonicParsing="false" onAction="#salvarDisciplina" prefHeight="25.0" prefWidth="70.0" text="Salvar" textAlignment="JUSTIFY" textOverrun="CLIP">
+                    <Button fx:id="BtnSalvarDisciplina" alignment="CENTER" mnemonicParsing="false" onAction="#onBtnSalvarDisciplina" prefHeight="25.0" prefWidth="70.0" text="Salvar" textAlignment="JUSTIFY" textOverrun="CLIP">
                   <opaqueInsets>
                      <Insets left="5.0" right="5.0" />
                   </opaqueInsets></Button>
-                    <Button alignment="CENTER" mnemonicParsing="false" onAction="#cancelarDisciplina" prefHeight="25.0" prefWidth="70.0" text="Cancelar" textAlignment="JUSTIFY">
+                    <Button fx:id="BtnCancelarDisciplina" alignment="CENTER" mnemonicParsing="false" onAction="#onBtnCancelarDisciplina" prefHeight="25.0" prefWidth="70.0" text="Cancelar" textAlignment="JUSTIFY">
                   <opaqueInsets>
                      <Insets left="5.0" right="5.0" />
                   </opaqueInsets></Button>
@@ -54,19 +54,19 @@
             <children>
                 <HBox alignment="CENTER" prefHeight="25.0" prefWidth="439.0" spacing="10.0">
                     <children>
-                        <Button alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" onAction="#novaDisciplina" prefHeight="25.0" prefWidth="100.0" text="Novo">
+                        <Button fx:id="BtnNovaDisciplina" alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" onAction="#onBtnNovaDisciplina" prefHeight="25.0" prefWidth="100.0" text="Novo">
                      <HBox.margin>
                         <Insets />
                      </HBox.margin></Button>
-                        <Button alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" onAction="#editarDisciplina" prefHeight="25.0" prefWidth="100.0" text="Editar">
+                        <Button fx:id="BtnEditarDisciplina" alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" onAction="#onBtnEditarDisciplina" prefHeight="25.0" prefWidth="100.0" text="Editar">
                      <HBox.margin>
                         <Insets />
                      </HBox.margin></Button>
-                        <Button alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" onAction="#removerDisciplina" prefHeight="25.0" prefWidth="100.0" text="Remover">
+                        <Button fx:id="BtnRemoverDisciplina" alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" onAction="#onBtnRemoverDisciplina" prefHeight="25.0" prefWidth="100.0" text="Remover">
                      <HBox.margin>
                         <Insets />
                      </HBox.margin></Button>
-                        <Button alignment="CENTER" contentDisplay="CENTER" graphicTextGap="1.0" mnemonicParsing="false" onAction="#atualizarLista" prefHeight="25.0" prefWidth="100.0" text="Atualizar Lista">
+                        <Button fx:id="BtnAtualizarLista" alignment="CENTER" contentDisplay="CENTER" graphicTextGap="1.0" mnemonicParsing="false" onAction="#onBtnAtualizarLista" prefHeight="25.0" prefWidth="100.0" text="Atualizar Lista">
                      <HBox.margin>
                         <Insets />
                      </HBox.margin></Button>

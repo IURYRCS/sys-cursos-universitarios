@@ -7,6 +7,7 @@ import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import org.model.Curso;
 import org.model.Disciplina;
+import org.utils.Alerta;
 
 public class DisciplinaController {
 
@@ -31,9 +32,26 @@ public class DisciplinaController {
     @FXML
     private TableColumn<Disciplina, Curso> cursoColumn;
 
+    @FXML
+    private Button BtnSalvarDisciplina;
+
+    @FXML
+    private Button BtnCancelarDisciplina;
+
+    @FXML
+    private Button BtnNovaDisciplina;
+
+    @FXML
+    private Button BtnEditarDisciplina;
+
+    @FXML
+    private Button BtnRemoverDisciplina;
+
+    @FXML
+    private Button BtnAtualizarLista;
+
     private ObservableList<Disciplina> disciplinaList = FXCollections.observableArrayList();
-    private ObservableList<Curso> cursoList = FXCollections.observableArrayList(
-    );
+    private ObservableList<Curso> cursoList = FXCollections.observableArrayList();
 
     @FXML
     public void initialize() {
@@ -46,50 +64,55 @@ public class DisciplinaController {
     }
 
     @FXML
-    private void salvarDisciplina() {
+    private void onBtnSalvarDisciplina() {
         String nome = nomeTextField.getText();
         String descricao = descricaoTextArea.getText();
         Curso curso = cursoComboBox.getValue();
 
+        if (nome.isEmpty() || descricao.isEmpty() || curso == null) {
+            Alerta.exibirAlerta("Erro", null, "Por favor, preencha todos os campos.", Alert.AlertType.WARNING);
+            return;
+        }
 
-
+        Disciplina novaDisciplina = new Disciplina();
+        disciplinaList.add(novaDisciplina);
         clearInputFields();
     }
 
     @FXML
-    private void cancelarDisciplina() {
+    private void onBtnCancelarDisciplina() {
         clearInputFields();
     }
 
     @FXML
-    private void novaDisciplina() {
+    private void onBtnNovaDisciplina() {
         clearInputFields();
     }
 
     @FXML
-    private void editarDisciplina() {
+    private void onBtnEditarDisciplina() {
         Disciplina selectedDisciplina = disciplinaTableView.getSelectionModel().getSelectedItem();
         if (selectedDisciplina != null) {
             nomeTextField.setText(selectedDisciplina.getNome());
             descricaoTextArea.setText(selectedDisciplina.getDescricao());
             cursoComboBox.setValue(selectedDisciplina.getCurso());
         } else {
-            showAlert("Nenhuma Disciplina Selecionada", "Por favor, selecione uma disciplina para editar.");
+            Alerta.exibirAlerta("Erro", null, "Selecione uma disciplina para editar.", Alert.AlertType.WARNING);
         }
     }
 
     @FXML
-    private void removerDisciplina() {
+    private void onBtnRemoverDisciplina() {
         Disciplina selectedDisciplina = disciplinaTableView.getSelectionModel().getSelectedItem();
         if (selectedDisciplina != null) {
             disciplinaList.remove(selectedDisciplina);
         } else {
-            showAlert("Nenhuma Disciplina Selecionada", "Por favor, selecione uma disciplina para remover.");
+            Alerta.exibirAlerta("Erro", null, "Selecione uma disciplina para remover.", Alert.AlertType.WARNING);
         }
     }
 
     @FXML
-    private void atualizarLista() {
+    private void onBtnAtualizarLista() {
         disciplinaTableView.refresh();
     }
 
@@ -97,13 +120,5 @@ public class DisciplinaController {
         nomeTextField.clear();
         descricaoTextArea.clear();
         cursoComboBox.setValue(null);
-    }
-
-    private void showAlert(String title, String content) {
-        Alert alert = new Alert(Alert.AlertType.WARNING);
-        alert.setTitle(title);
-        alert.setHeaderText(null);
-        alert.setContentText(content);
-        alert.showAndWait();
     }
 }

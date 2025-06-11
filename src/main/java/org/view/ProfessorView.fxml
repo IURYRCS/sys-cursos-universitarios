@@ -36,8 +36,8 @@
 
             <HBox alignment="CENTER" spacing="10.0" GridPane.columnIndex="1" GridPane.rowIndex="3">
                 <children>
-                    <Button mnemonicParsing="false" onAction="#salvarProfessor" prefHeight="25.0" prefWidth="70.0" text="Salvar" />
-                    <Button mnemonicParsing="false" onAction="#cancelarProfessor" prefHeight="25.0" prefWidth="70.0" text="Cancelar" />
+                    <Button fx:id="BtnSalvarProfessor" mnemonicParsing="false" onAction="#onBtnSalvarProfessor" prefHeight="25.0" prefWidth="70.0" text="Salvar" />
+                    <Button fx:id="BtnCancelarProfessor" mnemonicParsing="false" onAction="#onBtnCancelarProfessor" prefHeight="25.0" prefWidth="70.0" text="Cancelar" />
                 </children>
             </HBox>
         </GridPane>
@@ -45,10 +45,10 @@
             <children>
                 <HBox alignment="CENTER" spacing="10.0">
                     <children>
-                        <Button mnemonicParsing="false" onAction="#novoProfessor" prefHeight="25.0" prefWidth="100.0" text="Novo" />
-                        <Button mnemonicParsing="false" onAction="#editarProfessor" prefHeight="25.0" prefWidth="100.0" text="Editar" />
-                        <Button mnemonicParsing="false" onAction="#removerProfessor" prefHeight="25.0" prefWidth="100.0" text="Remover" />
-                        <Button mnemonicParsing="false" onAction="#atualizarLista" prefHeight="25.0" prefWidth="100.0" text="Atualizar Lista" />
+                        <Button fx:id="BtnNovoProfessor" mnemonicParsing="false" onAction="#onBtnNovoProfessor" prefHeight="25.0" prefWidth="100.0" text="Novo" />
+                        <Button fx:id="BtnEditarProfessor" mnemonicParsing="false" onAction="#onBtnEditarProfessor" prefHeight="25.0" prefWidth="100.0" text="Editar" />
+                        <Button fx:id="BtnRemoverProfessor" mnemonicParsing="false" onAction="#onBtnRemoverProfessor" prefHeight="25.0" prefWidth="100.0" text="Remover" />
+                        <Button fx:id="BtnAtualizarLista" mnemonicParsing="false" onAction="#onBtnAtualizarLista" prefHeight="25.0" prefWidth="100.0" text="Atualizar Lista" />
                     </children>
                 </HBox>
 

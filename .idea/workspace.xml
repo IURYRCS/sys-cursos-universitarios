@@ -5,26 +5,16 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="e47fdf32-afb7-46fb-84ea-cae1bd224fe3" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/src/main/java/org/controller/DisciplinaController.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/org/controller/ProfessorController.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/org/controller/TurmaController.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/org/utils/Alerta.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/org/view/DisciplinaView.fxml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/org/view/ProfessorView.fxml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/org/view/TurmaView.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/org/controller/CursoController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/controller/CursoController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/controller/MainController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/controller/MainController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/dao/CursoDAO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/dao/CursoDAO.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/dao/DisciplinaDAO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/dao/DisciplinaDAO.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/dao/ProfessorDAO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/dao/ProfessorDAO.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/dao/TurmaDAO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/dao/TurmaDAO.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/controller/DisciplinaController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/controller/DisciplinaController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/controller/ProfessorController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/controller/ProfessorController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/controller/TurmaController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/controller/TurmaController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/org/model/Professor.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/model/Professor.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/utils/JPAUtil.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/utils/JPAUtil.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/utils/PathFXML.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/utils/PathFXML.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/org/view/CursoView.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/view/CursoView.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/view/MainView.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/view/MainView.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/view/DisciplinaView.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/view/DisciplinaView.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/view/ProfessorView.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/view/ProfessorView.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/view/TurmaView.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/view/TurmaView.fxml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />

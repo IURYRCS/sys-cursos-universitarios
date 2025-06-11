@@ -8,6 +8,7 @@ import javafx.scene.control.cell.PropertyValueFactory;
 import org.model.Disciplina;
 import org.model.Professor;
 import org.model.Turma;
+import org.utils.Alerta;
 
 public class TurmaController {
 
@@ -38,11 +39,27 @@ public class TurmaController {
     @FXML
     private TableColumn<Turma, String> horarioColumn;
 
+    @FXML
+    private Button BtnSalvarTurma;
+
+    @FXML
+    private Button BtnCancelarTurma;
+
+    @FXML
+    private Button BtnNovaTurma;
+
+    @FXML
+    private Button BtnEditarTurma;
+
+    @FXML
+    private Button BtnRemoverTurma;
+
+    @FXML
+    private Button BtnAtualizarLista;
+
     private ObservableList<Turma> turmaList = FXCollections.observableArrayList();
-    private ObservableList<Disciplina> disciplinaList = FXCollections.observableArrayList(
-           );
-    private ObservableList<Professor> professorList = FXCollections.observableArrayList(
-      );
+    private ObservableList<Disciplina> disciplinaList = FXCollections.observableArrayList();
+    private ObservableList<Professor> professorList = FXCollections.observableArrayList();
 
     @FXML
     public void initialize() {
@@ -57,44 +74,64 @@ public class TurmaController {
     }
 
     @FXML
-    private void salvarTurma() {
+    private void onBtnSalvarTurma() {
+        String semestre = semestreTextField.getText();
+        Disciplina disciplina = disciplinaComboBox.getValue();
+        Professor professor = professorComboBox.getValue();
+        String horario = horarioTextField.getText();
 
+        if (semestre.isEmpty() || disciplina == null || professor == null || horario.isEmpty()) {
+            Alerta.exibirAlerta("Erro", null, "Por favor, preencha todos os campos.", Alert.AlertType.WARNING);
+            return;
+        }
 
+        Turma novaTurma = new Turma();
+        turmaList.add(novaTurma);
         clearInputFields();
     }
 
     @FXML
-    private void cancelarTurma() {
+    private void onBtnCancelarTurma() {
         clearInputFields();
     }
 
     @FXML
-    private void novaTurma() {
+    private void onBtnNovaTurma() {
         clearInputFields();
     }
 
     @FXML
-    private void editarTurma() {
-
+    private void onBtnEditarTurma() {
+        Turma selectedTurma = turmaTableView.getSelectionModel().getSelectedItem();
+        if (selectedTurma != null) {
+            semestreTextField.setText(String.valueOf(selectedTurma.getSemestre()));
+            disciplinaComboBox.setValue(selectedTurma.getDisciplina());
+            professorComboBox.setValue(selectedTurma.getProfessor());
+            horarioTextField.setText(selectedTurma.getHorario());
+        } else {
+            Alerta.exibirAlerta("Erro", null, "Selecione uma turma para editar.", Alert.AlertType.WARNING);
+        }
     }
 
     @FXML
-    private void removerTurma() {
-
+    private void onBtnRemoverTurma() {
+        Turma selectedTurma = turmaTableView.getSelectionModel().getSelectedItem();
+        if (selectedTurma != null) {
+            turmaList.remove(selectedTurma);
+        } else {
+            Alerta.exibirAlerta("Erro", null, "Selecione uma turma para remover.", Alert.AlertType.WARNING);
+        }
     }
 
     @FXML
-    private void atualizarLista() {
+    private void onBtnAtualizarLista() {
+        turmaTableView.refresh();
     }
 
     private void clearInputFields() {
-      }
-
-    private void showAlert(String title, String content) {
-        Alert alert = new Alert(Alert.AlertType.WARNING);
-        alert.setTitle(title);
-        alert.setHeaderText(null);
-        alert.setContentText(content);
-        alert.showAndWait();
+        semestreTextField.clear();
+        disciplinaComboBox.setValue(null);
+        professorComboBox.setValue(null);
+        horarioTextField.clear();
     }
 }

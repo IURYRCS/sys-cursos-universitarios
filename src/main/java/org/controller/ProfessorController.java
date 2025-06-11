@@ -6,6 +6,7 @@ import javafx.fxml.FXML;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import org.model.Professor;
+import org.utils.Alerta;
 
 public class ProfessorController {
 
@@ -30,8 +31,25 @@ public class ProfessorController {
     @FXML
     private TableColumn<Professor, String> formacaoColumn;
 
-    private ObservableList<Professor> professorList = FXCollections.observableArrayList(
-         );
+    @FXML
+    private Button BtnSalvarProfessor;
+
+    @FXML
+    private Button BtnCancelarProfessor;
+
+    @FXML
+    private Button BtnNovoProfessor;
+
+    @FXML
+    private Button BtnEditarProfessor;
+
+    @FXML
+    private Button BtnRemoverProfessor;
+
+    @FXML
+    private Button BtnAtualizarLista;
+
+    private ObservableList<Professor> professorList = FXCollections.observableArrayList();
 
     @FXML
     public void initialize() {
@@ -43,49 +61,55 @@ public class ProfessorController {
     }
 
     @FXML
-    private void salvarProfessor() {
+    private void onBtnSalvarProfessor() {
         String nome = nomeTextField.getText();
         String email = emailTextField.getText();
         String formacao = formacaoTextField.getText();
 
+        if (nome.isEmpty() || email.isEmpty() || formacao.isEmpty()) {
+            Alerta.exibirAlerta("Erro", null, "Por favor, preencha todos os campos.", Alert.AlertType.WARNING);
+            return;
+        }
 
+        Professor novoProfessor = new Professor();
+        professorList.add(novoProfessor);
         clearInputFields();
     }
 
     @FXML
-    private void cancelarProfessor() {
+    private void onBtnCancelarProfessor() {
         clearInputFields();
     }
 
     @FXML
-    private void novoProfessor() {
+    private void onBtnNovoProfessor() {
         clearInputFields();
     }
 
     @FXML
-    private void editarProfessor() {
+    private void onBtnEditarProfessor() {
         Professor selectedProfessor = professorTableView.getSelectionModel().getSelectedItem();
         if (selectedProfessor != null) {
             nomeTextField.setText(selectedProfessor.getNome());
-            emailTextField.setText(selectedProfessor.getEMail());
+            emailTextField.setText(selectedProfessor.getEmail());
             formacaoTextField.setText(selectedProfessor.getFormacao());
         } else {
-            showAlert("Nenhum Professor Selecionado", "Por favor, selecione um professor para editar.");
+            Alerta.exibirAlerta("Erro", null, "Selecione um professor para editar.", Alert.AlertType.WARNING);
         }
     }
 
     @FXML
-    private void removerProfessor() {
+    private void onBtnRemoverProfessor() {
         Professor selectedProfessor = professorTableView.getSelectionModel().getSelectedItem();
         if (selectedProfessor != null) {
             professorList.remove(selectedProfessor);
         } else {
-            showAlert("Nenhum Professor Selecionado", "Por favor, selecione um professor para remover.");
+            Alerta.exibirAlerta("Erro", null, "Selecione um professor para remover.", Alert.AlertType.WARNING);
         }
     }
 
     @FXML
-    private void atualizarLista() {
+    private void onBtnAtualizarLista() {
         professorTableView.refresh();
     }
 
@@ -93,13 +117,5 @@ public class ProfessorController {
         nomeTextField.clear();
         emailTextField.clear();
         formacaoTextField.clear();
-    }
-
-    private void showAlert(String title, String content) {
-        Alert alert = new Alert(Alert.AlertType.WARNING);
-        alert.setTitle(title);
-        alert.setHeaderText(null);
-        alert.setContentText(content);
-        alert.showAndWait();
     }
 }
