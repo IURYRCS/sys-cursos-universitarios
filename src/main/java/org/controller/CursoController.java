@@ -5,6 +5,7 @@ import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
+import org.dao.CursoDAO;
 import org.model.Curso;
 import org.utils.Alerta;
 
@@ -39,12 +40,20 @@ public class CursoController {
     private Button BtnAtualizarLista;
 
     private ObservableList<Curso> cursoList = FXCollections.observableArrayList();
+    private CursoDAO cursoDAO = new CursoDAO();
+    private Curso cursoEmEdicao = null; // Track curso being edited
 
     @FXML
     public void initialize() {
         nomeColumn.setCellValueFactory(new PropertyValueFactory<>("nome"));
         cargaHorariaColumn.setCellValueFactory(new PropertyValueFactory<>("cargaHoraria"));
+        loadCursos();
         cursoTableView.setItems(cursoList);
+    }
+
+    private void loadCursos() {
+        cursoList.clear();
+        cursoList.addAll(cursoDAO.findAll());
     }
 
     @FXML
@@ -65,25 +74,41 @@ public class CursoController {
             return;
         }
 
-        Curso novoCurso = new Curso();
-        cursoList.add(novoCurso);
+        if (cursoEmEdicao != null) {
+            // Update existing curso
+            cursoEmEdicao.setNome(nome);
+            cursoEmEdicao.setCargaHoraria(cargaHoraria);
+            cursoDAO.update(cursoEmEdicao);
+            cursoEmEdicao = null; // Clear edit mode
+        } else {
+            // Create new curso
+            Curso novoCurso = new Curso();
+            novoCurso.setNome(nome);
+            novoCurso.setCargaHoraria(cargaHoraria);
+            cursoDAO.create(novoCurso);
+        }
+
+        loadCursos();
         clearFields();
     }
 
     @FXML
     private void onBtnCancelarCurso() {
         clearFields();
+        cursoEmEdicao = null; // Clear edit state on cancel
     }
 
     @FXML
     private void onBtnNovoCurso() {
         clearFields();
+        cursoEmEdicao = null; // Clear edit state on new
     }
 
     @FXML
     private void onBtnEditarCurso() {
         Curso cursoSelecionado = cursoTableView.getSelectionModel().getSelectedItem();
         if (cursoSelecionado != null) {
+            cursoEmEdicao = cursoSelecionado; // Mark selected curso as being edited
             nomeTextField.setText(cursoSelecionado.getNome());
             cargaHorariaTextField.setText(String.valueOf(cursoSelecionado.getCargaHoraria()));
         } else {
@@ -95,7 +120,8 @@ public class CursoController {
     private void onBtnRemoverCurso() {
         Curso cursoSelecionado = cursoTableView.getSelectionModel().getSelectedItem();
         if (cursoSelecionado != null) {
-            cursoList.remove(cursoSelecionado);
+            cursoDAO.delete(cursoSelecionado);
+            loadCursos();
         } else {
             Alerta.exibirAlerta("Erro", null, "Selecione um curso para remover.", Alert.AlertType.WARNING);
         }
@@ -103,7 +129,7 @@ public class CursoController {
 
     @FXML
     private void onBtnAtualizarLista() {
-        cursoTableView.refresh();
+        loadCursos();
     }
 
     private void clearFields() {

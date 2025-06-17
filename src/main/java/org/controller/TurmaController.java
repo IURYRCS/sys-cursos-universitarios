@@ -5,6 +5,7 @@ import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
+import org.dao.TurmaDAO; // Import the TurmaDAO
 import org.model.Disciplina;
 import org.model.Professor;
 import org.model.Turma;
@@ -60,6 +61,8 @@ public class TurmaController {
     private ObservableList<Turma> turmaList = FXCollections.observableArrayList();
     private ObservableList<Disciplina> disciplinaList = FXCollections.observableArrayList();
     private ObservableList<Professor> professorList = FXCollections.observableArrayList();
+    private TurmaDAO turmaDAO = new TurmaDAO(); // Instance of TurmaDAO
+    private Turma turmaEmEdicao = null; // Track turma being edited
 
     @FXML
     public void initialize() {
@@ -71,6 +74,12 @@ public class TurmaController {
         disciplinaComboBox.setItems(disciplinaList);
         professorComboBox.setItems(professorList);
         turmaTableView.setItems(turmaList);
+        loadTurmas(); // Load turmas from the database
+    }
+
+    private void loadTurmas() {
+        turmaList.clear();
+        turmaList.addAll(turmaDAO.findAll()); // Load all turmas from the database
     }
 
     @FXML
@@ -85,25 +94,45 @@ public class TurmaController {
             return;
         }
 
-        Turma novaTurma = new Turma();
-        turmaList.add(novaTurma);
+        if (turmaEmEdicao != null) {
+            // Update existing turma
+            turmaEmEdicao.setSemestre(Integer.parseInt(semestre));
+            turmaEmEdicao.setDisciplina(disciplina);
+            turmaEmEdicao.setProfessor(professor);
+            turmaEmEdicao.setHorario(horario);
+            turmaDAO.update(turmaEmEdicao);
+            turmaEmEdicao = null; // Clear edit mode
+        } else {
+            // Create new turma
+            Turma novaTurma = new Turma();
+            novaTurma.setSemestre(Integer.parseInt(semestre));
+            novaTurma.setDisciplina(disciplina);
+            novaTurma.setProfessor(professor);
+            novaTurma.setHorario(horario);
+            turmaDAO.create(novaTurma);
+        }
+
+        loadTurmas(); // Refresh the list
         clearInputFields();
     }
 
     @FXML
     private void onBtnCancelarTurma() {
         clearInputFields();
+        turmaEmEdicao = null; // Clear edit state on cancel
     }
 
     @FXML
     private void onBtnNovaTurma() {
         clearInputFields();
+        turmaEmEdicao = null; // Clear edit state on new
     }
 
     @FXML
     private void onBtnEditarTurma() {
         Turma selectedTurma = turmaTableView.getSelectionModel().getSelectedItem();
         if (selectedTurma != null) {
+            turmaEmEdicao = selectedTurma; // Mark selected turma as being edited
             semestreTextField.setText(String.valueOf(selectedTurma.getSemestre()));
             disciplinaComboBox.setValue(selectedTurma.getDisciplina());
             professorComboBox.setValue(selectedTurma.getProfessor());
@@ -117,7 +146,8 @@ public class TurmaController {
     private void onBtnRemoverTurma() {
         Turma selectedTurma = turmaTableView.getSelectionModel().getSelectedItem();
         if (selectedTurma != null) {
-            turmaList.remove(selectedTurma);
+            turmaDAO.delete(selectedTurma); // Delete the selected turma from the database
+            loadTurmas(); // Refresh the list
         } else {
             Alerta.exibirAlerta("Erro", null, "Selecione uma turma para remover.", Alert.AlertType.WARNING);
         }
@@ -125,7 +155,7 @@ public class TurmaController {
 
     @FXML
     private void onBtnAtualizarLista() {
-        turmaTableView.refresh();
+        loadTurmas(); // Refresh the list from the database
     }
 
     private void clearInputFields() {

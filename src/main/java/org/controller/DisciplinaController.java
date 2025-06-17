@@ -5,6 +5,7 @@ import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
+import org.dao.DisciplinaDAO;
 import org.model.Curso;
 import org.model.Disciplina;
 import org.utils.Alerta;
@@ -52,6 +53,8 @@ public class DisciplinaController {
 
     private ObservableList<Disciplina> disciplinaList = FXCollections.observableArrayList();
     private ObservableList<Curso> cursoList = FXCollections.observableArrayList();
+    private DisciplinaDAO disciplinaDAO = new DisciplinaDAO(); // Instance of DisciplinaDAO
+    private Disciplina disciplinaEmEdicao = null; // Track disciplina being edited
 
     @FXML
     public void initialize() {
@@ -61,6 +64,12 @@ public class DisciplinaController {
 
         cursoComboBox.setItems(cursoList);
         disciplinaTableView.setItems(disciplinaList);
+        loadDisciplinas(); // Load disciplines from the database
+    }
+
+    private void loadDisciplinas() {
+        disciplinaList.clear();
+        disciplinaList.addAll(disciplinaDAO.findAll()); // Load all disciplines from the database
     }
 
     @FXML
@@ -74,25 +83,43 @@ public class DisciplinaController {
             return;
         }
 
-        Disciplina novaDisciplina = new Disciplina();
-        disciplinaList.add(novaDisciplina);
+        if (disciplinaEmEdicao != null) {
+            // Update existing disciplina
+            disciplinaEmEdicao.setNome(nome);
+            disciplinaEmEdicao.setDescricao(descricao);
+            disciplinaEmEdicao.setCurso(curso);
+            disciplinaDAO.update(disciplinaEmEdicao);
+            disciplinaEmEdicao = null; // Clear edit mode
+        } else {
+            // Create new disciplina
+            Disciplina novaDisciplina = new Disciplina();
+            novaDisciplina.setNome(nome);
+            novaDisciplina.setDescricao(descricao);
+            novaDisciplina.setCurso(curso);
+            disciplinaDAO.create(novaDisciplina);
+        }
+
+        loadDisciplinas(); // Refresh the list
         clearInputFields();
     }
 
     @FXML
     private void onBtnCancelarDisciplina() {
         clearInputFields();
+        disciplinaEmEdicao = null; // Clear edit state on cancel
     }
 
     @FXML
     private void onBtnNovaDisciplina() {
         clearInputFields();
+        disciplinaEmEdicao = null; // Clear edit state on new
     }
 
     @FXML
     private void onBtnEditarDisciplina() {
         Disciplina selectedDisciplina = disciplinaTableView.getSelectionModel().getSelectedItem();
         if (selectedDisciplina != null) {
+            disciplinaEmEdicao = selectedDisciplina; // Mark selected disciplina as being edited
             nomeTextField.setText(selectedDisciplina.getNome());
             descricaoTextArea.setText(selectedDisciplina.getDescricao());
             cursoComboBox.setValue(selectedDisciplina.getCurso());
@@ -105,7 +132,8 @@ public class DisciplinaController {
     private void onBtnRemoverDisciplina() {
         Disciplina selectedDisciplina = disciplinaTableView.getSelectionModel().getSelectedItem();
         if (selectedDisciplina != null) {
-            disciplinaList.remove(selectedDisciplina);
+            disciplinaDAO.delete(selectedDisciplina); // Delete the selected disciplina from the database
+            loadDisciplinas(); // Refresh the list
         } else {
             Alerta.exibirAlerta("Erro", null, "Selecione uma disciplina para remover.", Alert.AlertType.WARNING);
         }
@@ -113,7 +141,7 @@ public class DisciplinaController {
 
     @FXML
     private void onBtnAtualizarLista() {
-        disciplinaTableView.refresh();
+        loadDisciplinas(); // Refresh the list from the database
     }
 
     private void clearInputFields() {

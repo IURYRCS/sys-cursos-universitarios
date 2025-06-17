@@ -12,6 +12,7 @@ public class TurmaDAO {
     private static final String PERSISTENCE_UNIT_NAME = "seu_persistence_unit_name";
     private static EntityManagerFactory factory;
 
+
     public TurmaDAO() {
         if (factory == null) {
             factory = Persistence.createEntityManagerFactory(PERSISTENCE_UNIT_NAME);

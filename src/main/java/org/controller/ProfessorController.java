@@ -5,6 +5,7 @@ import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
+import org.dao.ProfessorDAO;
 import org.model.Professor;
 import org.utils.Alerta;
 
@@ -50,6 +51,8 @@ public class ProfessorController {
     private Button BtnAtualizarLista;
 
     private ObservableList<Professor> professorList = FXCollections.observableArrayList();
+    private ProfessorDAO professorDAO = new ProfessorDAO(); // Instance of ProfessorDAO
+    private Professor professorEmEdicao = null; // Track professor being edited
 
     @FXML
     public void initialize() {
@@ -57,7 +60,13 @@ public class ProfessorController {
         emailColumn.setCellValueFactory(new PropertyValueFactory<>("email"));
         formacaoColumn.setCellValueFactory(new PropertyValueFactory<>("formacao"));
 
+        loadProfessores(); // Load professors from the database
         professorTableView.setItems(professorList);
+    }
+
+    private void loadProfessores() {
+        professorList.clear();
+        professorList.addAll(professorDAO.findAll()); // Load all professors from the database
     }
 
     @FXML
@@ -71,25 +80,43 @@ public class ProfessorController {
             return;
         }
 
-        Professor novoProfessor = new Professor();
-        professorList.add(novoProfessor);
+        if (professorEmEdicao != null) {
+            // Update existing professor
+            professorEmEdicao.setNome(nome);
+            professorEmEdicao.setEmail(email);
+            professorEmEdicao.setFormacao(formacao);
+            professorDAO.update(professorEmEdicao);
+            professorEmEdicao = null; // Clear edit mode
+        } else {
+            // Create new professor
+            Professor novoProfessor = new Professor();
+            novoProfessor.setNome(nome);
+            novoProfessor.setEmail(email);
+            novoProfessor.setFormacao(formacao);
+            professorDAO.create(novoProfessor);
+        }
+
+        loadProfessores(); // Refresh the list
         clearInputFields();
     }
 
     @FXML
     private void onBtnCancelarProfessor() {
         clearInputFields();
+        professorEmEdicao = null; // Clear edit state on cancel
     }
 
     @FXML
     private void onBtnNovoProfessor() {
         clearInputFields();
+        professorEmEdicao = null; // Clear edit state on new
     }
 
     @FXML
     private void onBtnEditarProfessor() {
         Professor selectedProfessor = professorTableView.getSelectionModel().getSelectedItem();
         if (selectedProfessor != null) {
+            professorEmEdicao = selectedProfessor; // Mark selected professor as being edited
             nomeTextField.setText(selectedProfessor.getNome());
             emailTextField.setText(selectedProfessor.getEmail());
             formacaoTextField.setText(selectedProfessor.getFormacao());
@@ -102,7 +129,8 @@ public class ProfessorController {
     private void onBtnRemoverProfessor() {
         Professor selectedProfessor = professorTableView.getSelectionModel().getSelectedItem();
         if (selectedProfessor != null) {
-            professorList.remove(selectedProfessor);
+            professorDAO.delete(selectedProfessor); // Delete the selected professor from the database
+            loadProfessores(); // Refresh the list
         } else {
             Alerta.exibirAlerta("Erro", null, "Selecione um professor para remover.", Alert.AlertType.WARNING);
         }
@@ -110,7 +138,7 @@ public class ProfessorController {
 
     @FXML
     private void onBtnAtualizarLista() {
-        professorTableView.refresh();
+        loadProfessores(); // Refresh the list from the database
     }
 
     private void clearInputFields() {
